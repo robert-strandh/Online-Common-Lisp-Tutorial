@@ -9,7 +9,7 @@ The code for the \texttt{length} function is:
   (defun length (list)
     (if (null list)
         0
-        (length (rest list))))
+        (1+ (length (rest list)))))
 \end{verbatim}
 
 We propose to illustrate a call like this:
