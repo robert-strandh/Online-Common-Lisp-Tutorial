@@ -1,0 +1,98 @@
+\chapter{Recursive version of \texttt{length}}
+
+This node is meant to illustrate recursion \emph{operationally} using
+the \texttt{length} function as an example.
+
+The code for the \texttt{length} function is:
+
+\begin{verbatim}
+  (defun length (list)
+    (if (null list)
+        0
+        (length (rest list))))
+\end{verbatim}
+
+We propose to illustrate a call like this:
+
+\begin{verbatim}
+  (length *l*)
+\end{verbatim}
+
+Where \texttt{*l*} is a proper list containing $3$ elements.
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-1.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-1}
+Recursive length 1}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-2.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-2}
+Recursive length 2}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-3.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-3}
+Recursive length 3}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-4.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-4}
+Recursive length 4}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-5.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-5}
+  Recursive length 5}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-6.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-6}
+  Recursive length 6}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-7.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-7}
+  Recursive length 7}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-8.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-8}
+  Recursive length 8}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\inputfig{fig-recursion-length-9.pdf_t}
+\end{center}
+\caption{\label{fig-recursion-length-9}
+  Recursive length 9}
+\end{figure}
+
