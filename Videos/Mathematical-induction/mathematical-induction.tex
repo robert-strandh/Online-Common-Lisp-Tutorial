@@ -1,0 +1,211 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\beamertemplateshadingbackground{red!10}{blue!10}
+%\usepackage{fancybox}
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage{url}
+%\usepackage{graphics}
+%\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{moreverb}
+%\usepackage[all]{xy}
+\usepackage{listings}
+\usepackage{filecontents}
+\usepackage{graphicx}
+
+\lstset{
+  language=Lisp,
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle={},
+  commentstyle={},
+  stringstyle={}}
+
+\def\inputfig#1{\input #1}
+\def\inputeps#1{\includegraphics{#1}}
+\def\inputtex#1{\input #1}
+
+\inputtex{logos.tex}
+
+%\definecolor{ORANGE}{named}{Orange}
+
+\definecolor{GREEN}{rgb}{0,0.8,0}
+\definecolor{YELLOW}{rgb}{1,1,0}
+\definecolor{ORANGE}{rgb}{1,0.647,0}
+\definecolor{PURPLE}{rgb}{0.627,0.126,0.941}
+\definecolor{PURPLE}{named}{purple}
+\definecolor{PINK}{rgb}{1,0.412,0.706}
+\definecolor{WHEAT}{rgb}{1,0.8,0.6}
+\definecolor{BLUE}{rgb}{0,0,1}
+\definecolor{GRAY}{named}{gray}
+\definecolor{CYAN}{named}{cyan}
+
+\newcommand{\orchid}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\defun}[1]{\orchid{#1}}
+
+\newcommand{\BROWN}[1]{\textcolor{BROWN}{#1}}
+\newcommand{\RED}[1]{\textcolor{red}{#1}}
+\newcommand{\YELLOW}[1]{\textcolor{YELLOW}{#1}}
+\newcommand{\PINK}[1]{\textcolor{PINK}{#1}}
+\newcommand{\WHEAT}[1]{\textcolor{wheat}{#1}}
+\newcommand{\GREEN}[1]{\textcolor{GREEN}{#1}}
+\newcommand{\PURPLE}[1]{\textcolor{PURPLE}{#1}}
+\newcommand{\BLACK}[1]{\textcolor{black}{#1}}
+\newcommand{\WHITE}[1]{\textcolor{WHITE}{#1}}
+\newcommand{\MAGENTA}[1]{\textcolor{MAGENTA}{#1}}
+\newcommand{\ORANGE}[1]{\textcolor{ORANGE}{#1}}
+\newcommand{\BLUE}[1]{\textcolor{BLUE}{#1}}
+\newcommand{\GRAY}[1]{\textcolor{gray}{#1}}
+\newcommand{\CYAN}[1]{\textcolor{cyan }{#1}}
+
+\newcommand{\reference}[2]{\textcolor{PINK}{[#1~#2]}}
+%\newcommand{\vect}[1]{\stackrel{\rightarrow}{#1}}
+
+% Use some nice templates
+\beamertemplatetransparentcovereddynamic
+
+\newcommand{\A}{{\mathbb A}}
+\newcommand{\degr}{\mathrm{deg}}
+
+\title{Mathematical induction}
+
+%\inputtex{macros.tex}
+
+
+\begin{document}
+\frame{
+\titlepage
+}
+
+\setbeamertemplate{footline}{
+\vspace{-1em}
+\hspace*{1ex}{~} \GRAY{\insertframenumber/\inserttotalframenumber}
+}
+
+\frame{
+\frametitle{Example}
+
+Let us say that we would like to prove the proposition that a
+\emph{perfect binary tree} of hight $h$ has $n = 2^{h+1} - 1$ nodes.
+
+\vskip 1cm
+
+A \emph{perfect binary tree} is a binary tree in which all interior
+nodes have two children and all leaves have the same depth
+[Wikipedia].
+}
+
+\frame{
+\frametitle{Perfect binary tree}
+\begin{figure}
+\begin{center}
+\inputfig{fig-perfect-binary-tree.pdf_t}
+\end{center}
+\end{figure}
+}
+
+\frame{
+\frametitle{First check some examples}
+Start by convincing yourself that the proposition might be true with
+some examples.
+}
+
+\frame{
+\frametitle{Tree with height 0}
+\begin{figure}
+\begin{center}
+\inputfig{fig-tree0.pdf_t}
+\end{center}
+\end{figure}
+$2^{h+1} - 1 = 2^{0+1} - 1 = 2^{1} - 1 = 2 - 1 = 1 = n$
+}
+
+\frame{
+\frametitle{Tree with height 1}
+\begin{figure}
+\begin{center}
+\inputfig{fig-tree1.pdf_t}
+\end{center}
+\end{figure}
+$2^{h+1} - 1 = 2^{1+1} - 1 = 2^{2} - 1 = 4 - 1 = 3 = n$
+}
+
+\frame{
+\frametitle{Tree with height 2}
+\begin{figure}
+\begin{center}
+\inputfig{fig-tree2.pdf_t}
+\end{center}
+\end{figure}
+$2^{h+1} - 1 = 2^{2+1} - 1 = 2^{3} - 1 = 8 - 1 = 7 = n$
+}
+
+\frame{
+\frametitle{Tree with height 3}
+\begin{figure}
+\begin{center}
+\inputfig{fig-tree3.pdf_t}
+\end{center}
+\end{figure}
+$2^{h+1} - 1 = 2^{3+1} - 1 = 2^{4} - 1 = 16 - 1 = 15 = n$
+}
+
+\frame{
+\frametitle{Mathematical induction}
+\begin{enumerate}
+\item Establish a \emph{base case}.
+\item Establish an \emph{induction hypothesis}.
+\item Using the induction hypothesis, prove that the proposition is
+  true.
+\end{enumerate}
+}
+
+\frame{
+\frametitle{Mathematical induction (base case)}
+We check that the proposition is true for the smallest possible value of
+$h$, which is $h = 0$.
+\vskip 1cm
+But our first figure shows that for $h = 0$, $n = 1$, so the proposition
+is true for the base case.
+}
+
+\frame{
+\frametitle{Mathematical induction (induction hypothesis)}
+Assume that the proposition is true for $h = 0, 1, \cdots, k$.
+}
+
+\frame{
+\frametitle{Mathematical induction (proof)}
+Prove that the proposition is also true for $h = k+1$.
+\vskip 0.5cm
+So, suppose we have a tree with height $h = j = k + 1$, where $k \ge 0$.
+Then we have the following situation:
+\begin{figure}
+\begin{center}
+\inputfig{fig-induction-hypothesis.pdf_t}
+\end{center}
+\end{figure}
+By the induction hypothesis, each child of the root has $n = 2^{k+1} -
+1$ nodes.  The total number of nodes in this tree is $2(2^{k+1} - 1) +
+1 = 2^{(k+1+1)} - 2 + 1 = 2^{j+1} - 1$ which concludes the proof.
+}
+
+\frame{
+  \frametitle{Mathematical induction (summary)}
+  \begin{itemize}
+  \item We show that the proposition is true for some \emph{base
+    case}.  When the domain is the non-negative integers, the base
+    case is often $0$ as in this case for $h$.
+  \item We establish an \emph{induction hypothesis} that the
+    proposition is true for values (in this case $h$) of $0, 1,
+    \cdots, k$.
+  \item Given the induction hypothesis, we prove that the proposition
+    is also true for $k+1$.
+  \item The previous steps taken together, we have shown that the
+    proposition is true, first for $h=0$.  Then using the induction
+    step, we know that it is true for $h=1$, etc.  We conclude that
+    the proposition is true for all non-negative integers.
+  \end{itemize}
+  }
+
+\end{document}
